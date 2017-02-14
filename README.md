@@ -37,3 +37,8 @@ export const firebaseConfig = {
   storageBucket: '<your-storage-bucket>'
 };
 ```
+
+##Steps
+- setup firebase - [see commit](https://github.com/branecko/ng2-firebase-simple-website/commit/3ee89d8adeb60109dac64663b138a8190b05cbc3)
+- get data from firebase - [see commit](https://github.com/branecko/ng2-firebase-simple-website/commit/71f34e22e9add74751de60e8a73354ebd97d8458)
+
