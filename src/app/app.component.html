@@ -1,5 +1,80 @@
-<ul>
-  <li class="text" *ngFor="let business of businesses">
-    {{business.company}}
-  </li>
-</ul>
+<div class="top-bar">
+  <div class="row">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text">ng2 firebase simple website</li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+    </div>
+  </div>
+</div>
+<br>
+
+<div
+  class="row"
+  *ngIf="appState == 'extend'"
+>
+  <div class="large-12 columns">
+    <button
+      class="button alert"
+      (click)="changeState('default')"
+    >
+      Go Back
+    </button>
+  </div>
+
+
+  <div *ngFor="let business of businesses">
+    <div
+      *ngIf="business.$key == activeKey"
+      class="row"
+    >
+      <div class="large-5 columns large-offset-1">
+        <h3>{{business.company}}</h3>
+        <p>{{business.category}}</p>
+        <p>{{business.city}}</p>
+      </div>
+      <div class="large-5 columns large-offset-1">
+        <h4>Contact Info</h4>
+        <ul>
+          <li>Email: {{business.email}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <div *ngIf="businesses">
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Category</th>
+            <th>City</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let business of businesses">
+            <td>{{business.company}}</td>
+            <td>{{business.category}}</td>
+            <td>{{business.city}}</td>
+            <td>
+              <button
+                class="button"
+                (click)="changeState('extend', business.$key)"
+              >
+                More
+              </button>
+              <button class="button secondary">Edit</button>
+              <button class="button alert">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
