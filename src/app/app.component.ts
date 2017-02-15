@@ -27,7 +27,7 @@ export class AppComponent implements OnInit{
     });
   }
 
-  changeState(state, key){
+  changeState(state, key?){
     if(key){
       this.activeKey = key;
     }
@@ -38,5 +38,19 @@ export class AppComponent implements OnInit{
     this._firebaseService.getBusinesses(category).subscribe(businesses => {
       this.businesses = businesses;
     });
+  }
+
+  addBusiness(company: string, category: string, city: string, email: string) {
+    var created_at = new Date().toString();
+    var newBusiness: Business = {
+      company: company,
+      category: category,
+      city: city,
+      email: email
+    };
+
+    this._firebaseService.addBusiness(newBusiness);
+
+    this.changeState('default');
   }
 }
