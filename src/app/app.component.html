@@ -34,6 +34,7 @@
   </div>
 </div>
 
+<!-- ADD FORM -->
 <div
   class="row"
   *ngIf="appState == 'add'"
@@ -95,7 +96,77 @@
         </div>
         <div class="large-6 columns">
           <button
+            class="button "
+            type="submit"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<!-- EDIT FORM -->
+<div
+  class="row"
+  *ngIf="appState == 'edit'"
+>
+  <div class="large-12 columns">
+    <h3>Edit entry</h3>
+    <form (submit)="updateBusiness()"
+    >
+      <div class="row">
+        <div class="large-6 columns">
+          <label>
+            Company
+            <input type="text" [(ngModel)]="activeCompany" name="activeCompany" placeholder="Company Name" #company />
+          </label>
+        </div>
+        <div class="large-6 columns">
+          <label>
+            Category
+            <select [(ngModel)]="activeCategory" name="activeCategory" #category>
+              <option value="0">Select</option>
+              <option
+                *ngFor="let category of categories"
+                value="{{category.name}}"
+              >
+                {{category.name}}
+              </option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <label>
+            City
+            <input type="text" [(ngModel)]="activeCity" name="activeCity"  placeholder="enter city" #city />
+          </label>
+        </div>
+        <div class="large-6 columns">
+          <label>
+            Email
+            <input type="text" [(ngModel)]="activeEmail" name="activeEmail" placeholder="enter email" #email />
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="large-6 columns">
+          <button
             class="button alert"
+            (click)="changeState('default')"
+          >
+            Go Back
+          </button>
+        </div>
+        <div class="large-6 columns">
+          <button
+            class="button "
             type="submit"
           >
             Save
@@ -165,8 +236,18 @@
               >
                 More
               </button>
-              <button class="button secondary">Edit</button>
-              <button class="button alert">Delete</button>
+              <button
+                class="button secondary"
+                (click)="showEdit(business)"
+              >
+                Edit
+              </button>
+              <button
+                class="button alert"
+                (click)="deleteBusiness(business.$key)"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>

@@ -6,4 +6,5 @@ export interface Business {
   city?: string;
   company?: string;
   email?: string;
+  created_at?: string;
 }
